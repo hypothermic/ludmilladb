@@ -1,0 +1,23 @@
+     _           _           _ _ _               _ _         
+    | |         | |         (_| | |             | | |        
+    | |_   _  __| |_ __ ___  _| | | __ _      __| | |__      
+    | | | | |/ _` | '_ ` _ \| | | |/ _` |    / _` | '_ \     
+    | | |_| | (_| | | | | | | | | | (_| |   | (_| | |_) |    
+    |_|\__,_|\__,_|_| |_| |_|_|_|_|\__,_|    \__,_|_.__/     
+                                                             
+=============================================================
+                                                             
+   A user-friendly alternative to Microsoft Access or KEXI.  
+           Cross-platform and fully open source.             
+
+----------------------[ Installation ]-----------------------
+
+1. Make sure the git submodules are fully cloned:
+
+   git submodule update --init --force --remote
+
+2. Build and compile:
+
+   autoreconf -i && ./configure && make && make execute
+
+-------------------------------------------------------------

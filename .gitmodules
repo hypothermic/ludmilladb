@@ -1,0 +1,3 @@
+[submodule "include/array"]
+	path = include/array
+	url = https://github.com/hypothermic/array.h.git
