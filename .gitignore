@@ -1,2 +1,10 @@
 /build/*
 !/build/.xproject
+
+# Ignore temporary files used by Glade
+window.ui~
+timeline_body.ui~
+
+/build/a.out
+/build/window.css.o
+/build/window.ui.o
