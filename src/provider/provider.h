@@ -8,33 +8,16 @@
  *                  This file belongs to the Ludmilla project.                    *
  *                     It is licensed under the MIT License.                      *
  *                                                                                *
- *              -=  Filename: ludmilla.h                          =-              *
+ *              -=  Filename: provider.h                          =-              *
  *              -=  Authors: hypothermic <admin@hypothermic.nl>   =-              *
  *              -=  Since version: v1.000 (created: 05/11/2018)   =-              *
 \**                                                                              **/
 
-#ifndef FOSCAMCONTROL_H_
-#define FOSCAMCONTROL_H_
+#ifndef PROVIDER_H_
+#define PROVIDER_H_
 
-#include <string.h>
+typedef enum Provider {
+    SQLITE //, MYSQL, etc.
+} Provider;
 
-#include <gtk/gtk.h>
-
-#include <gdk/gdk.h>
-#if defined (GDK_WINDOWING_X11)
-#include <gdk/gdkx.h>
-#elif defined (GDK_WINDOWING_WIN32)
-#include <gdk/gdkwin32.h>
-#elif defined (GDK_WINDOWING_QUARTZ)
-#include <gdk/gdkquartz.h>
-#endif
-
-#include <gdk/gdkkeysyms.h>
-
-#include "type/boolean.h"
-#include "type/w_stage.h"
-
-#include "provider/provider.h"
-#include "provider/router.h"
-
-#endif // FOSCAMCONTROL_H_
+#endif // PROVIDER_H_

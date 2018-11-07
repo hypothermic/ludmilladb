@@ -8,33 +8,26 @@
  *                  This file belongs to the Ludmilla project.                    *
  *                     It is licensed under the MIT License.                      *
  *                                                                                *
- *              -=  Filename: ludmilla.h                          =-              *
+ *              -=  Filename: router.h                            =-              *
  *              -=  Authors: hypothermic <admin@hypothermic.nl>   =-              *
  *              -=  Since version: v1.000 (created: 05/11/2018)   =-              *
 \**                                                                              **/
 
-#ifndef FOSCAMCONTROL_H_
-#define FOSCAMCONTROL_H_
+#ifndef ROUTER_H_
+#define ROUTER_H_
 
-#include <string.h>
+#include <stdlib.h>
 
-#include <gtk/gtk.h>
+#include "provider.h"
 
-#include <gdk/gdk.h>
-#if defined (GDK_WINDOWING_X11)
-#include <gdk/gdkx.h>
-#elif defined (GDK_WINDOWING_WIN32)
-#include <gdk/gdkwin32.h>
-#elif defined (GDK_WINDOWING_QUARTZ)
-#include <gdk/gdkquartz.h>
-#endif
+typedef struct _Router
+{
+    Provider *prov;   // set at construction
+    const char* path; // database path
+} Router;
 
-#include <gdk/gdkkeysyms.h>
+Router *router_new_sqlite(const char* path);
 
-#include "type/boolean.h"
-#include "type/w_stage.h"
+void router_free(Router *rtr);
 
-#include "provider/provider.h"
-#include "provider/router.h"
-
-#endif // FOSCAMCONTROL_H_
+#endif // ROUTER_H_

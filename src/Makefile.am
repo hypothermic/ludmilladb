@@ -1,7 +1,8 @@
 bin_PROGRAMS=a.out
 
 a_out_SOURCES=*.c \
-              w_chooser/*.c
+              w_chooser/*.c \
+			  provider/*.c
 a_out_CPPFLAGS=$(GTK_CFLAGS)
 a_out_LDADD= $(GTK_LIBS) deployer/libdeployer.a ../include/str_builder/libstrbuilder.a
 SUBDIRS = deployer

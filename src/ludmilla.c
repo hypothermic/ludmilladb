@@ -60,7 +60,7 @@ static void activate(GtkApplication *app, gpointer data)
     strcpy(window_ui_path, getenv("HOME"));
     strcat(window_ui_path, "/.ludmilladb/res/window.ui");
     gtk_builder_add_from_file(builder, window_ui_path, NULL);
-    window = gtk_builder_get_object(builder, "w_chooser");
+    window = gtk_builder_get_object(builder, "w_chooser"); 
     g_signal_connect(G_OBJECT (window), "key_press_event", G_CALLBACK (on_key_press), NULL);
     gtk_application_add_window(app, GTK_WINDOW(window));
     gtk_builder_connect_signals(builder, NULL);

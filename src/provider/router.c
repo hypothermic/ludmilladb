@@ -8,33 +8,41 @@
  *                  This file belongs to the Ludmilla project.                    *
  *                     It is licensed under the MIT License.                      *
  *                                                                                *
- *              -=  Filename: ludmilla.h                          =-              *
+ *              -=  Filename: ludmilla.c                          =-              *
  *              -=  Authors: hypothermic <admin@hypothermic.nl>   =-              *
  *              -=  Since version: v1.000 (created: 05/11/2018)   =-              *
 \**                                                                              **/
 
-#ifndef FOSCAMCONTROL_H_
-#define FOSCAMCONTROL_H_
+#include "router.h"
 
-#include <string.h>
+#include "all/sqlite.h"
 
-#include <gtk/gtk.h>
+static Router *router_new(const char* path)
+{
+    Router *rtr = (Router*)malloc(sizeof(Router));
+    rtr->path = path;
+    return rtr;
+}
 
-#include <gdk/gdk.h>
-#if defined (GDK_WINDOWING_X11)
-#include <gdk/gdkx.h>
-#elif defined (GDK_WINDOWING_WIN32)
-#include <gdk/gdkwin32.h>
-#elif defined (GDK_WINDOWING_QUARTZ)
-#include <gdk/gdkquartz.h>
-#endif
+Router *router_new_sqlite(const char* path)
+{
+    Router* rtr = router_new(path);
+    rtr->prov = SQLITE;
+    return rtr;
+}
 
-#include <gdk/gdkkeysyms.h>
+void router_free(Router *rtr)
+{
+    free(rtr);
+}
 
-#include "type/boolean.h"
-#include "type/w_stage.h"
+void router_init(Router *rtr)
+{
+    switch (*rtr->prov)
+    {
+        case SQLITE:
+            db_sql_init(rtr); break;
 
-#include "provider/provider.h"
-#include "provider/router.h"
-
-#endif // FOSCAMCONTROL_H_
+        // more once mysql gets implemented
+    }
+}
