@@ -32,6 +32,7 @@ void w_chooser_bind(GtkBuilder *builder)
 
 void cb_w_chooser_new()
 {
+    cb_w_chooser_close();
     printf("TO-DO: NEW\n");
 }
 
@@ -64,8 +65,14 @@ void cb_w_chooser_file()
     gtk_widget_destroy (dialog);
 
     if (succeeded) {
+        cb_w_chooser_close();
         printf("FILE SEL: %s\n", filename);
     }
+}
+
+void cb_w_chooser_close()
+{
+    gtk_widget_destroy(window);
 }
 
 void cb_w_chooser_m_quit()
