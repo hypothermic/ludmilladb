@@ -31,6 +31,18 @@ Router *router_new_sqlite(const char* path)
     return rtr;
 }
 
+Router *router_new_detect(const char* path)
+{
+    // TODO: Detect which database it is (example: MSAccess DB)
+    // and return new router with correct provider.
+    // Until ^^ is done, this returns sqlite provider.
+    /*
+    Router* rtr = router_new(path);
+    return rtr;
+    */
+    return router_new_sqlite(path);
+}
+
 void router_free(Router *rtr)
 {
     free(rtr);

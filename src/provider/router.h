@@ -28,6 +28,8 @@ typedef struct _Router
 
 Router *router_new_sqlite(const char* path);
 
+Router *router_new_detect(const char* path);
+
 void router_free(Router *rtr);
 
 #endif // ROUTER_H_
