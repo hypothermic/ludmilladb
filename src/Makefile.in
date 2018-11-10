@@ -103,7 +103,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
 am_a_out_OBJECTS = a_out-*.$(OBJEXT) w_chooser/a_out-*.$(OBJEXT) \
-	provider/a_out-*.$(OBJEXT)
+	w_session/a_out-*.$(OBJEXT) provider/a_out-*.$(OBJEXT)
 a_out_OBJECTS = $(am_a_out_OBJECTS)
 am__DEPENDENCIES_1 =
 a_out_DEPENDENCIES = $(am__DEPENDENCIES_1) deployer/libdeployer.a \
@@ -315,6 +315,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 a_out_SOURCES = *.c \
               w_chooser/*.c \
+			  w_session/*.c \
 			  provider/*.c
 
 a_out_CPPFLAGS = $(GTK_CFLAGS)
@@ -403,6 +404,14 @@ w_chooser/$(DEPDIR)/$(am__dirstamp):
 	@: > w_chooser/$(DEPDIR)/$(am__dirstamp)
 w_chooser/a_out-*.$(OBJEXT): w_chooser/$(am__dirstamp) \
 	w_chooser/$(DEPDIR)/$(am__dirstamp)
+w_session/$(am__dirstamp):
+	@$(MKDIR_P) w_session
+	@: > w_session/$(am__dirstamp)
+w_session/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) w_session/$(DEPDIR)
+	@: > w_session/$(DEPDIR)/$(am__dirstamp)
+w_session/a_out-*.$(OBJEXT): w_session/$(am__dirstamp) \
+	w_session/$(DEPDIR)/$(am__dirstamp)
 provider/$(am__dirstamp):
 	@$(MKDIR_P) provider
 	@: > provider/$(am__dirstamp)
@@ -416,6 +425,7 @@ mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f provider/*.$(OBJEXT)
 	-rm -f w_chooser/*.$(OBJEXT)
+	-rm -f w_session/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -423,6 +433,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a_out-*.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@provider/$(DEPDIR)/a_out-*.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@w_chooser/$(DEPDIR)/a_out-*.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@w_session/$(DEPDIR)/a_out-*.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -467,6 +478,20 @@ w_chooser/a_out-*.obj: w_chooser/*.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='w_chooser/*.c' object='w_chooser/a_out-*.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a_out_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o w_chooser/a_out-*.obj `if test -f 'w_chooser/*.c'; then $(CYGPATH_W) 'w_chooser/*.c'; else $(CYGPATH_W) '$(srcdir)/w_chooser/*.c'; fi`
+
+w_session/a_out-*.o: w_session/*.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a_out_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT w_session/a_out-*.o -MD -MP -MF w_session/$(DEPDIR)/a_out-*.Tpo -c -o w_session/a_out-*.o `test -f 'w_session/*.c' || echo '$(srcdir)/'`w_session/*.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) w_session/$(DEPDIR)/a_out-*.Tpo w_session/$(DEPDIR)/a_out-*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='w_session/*.c' object='w_session/a_out-*.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a_out_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o w_session/a_out-*.o `test -f 'w_session/*.c' || echo '$(srcdir)/'`w_session/*.c
+
+w_session/a_out-*.obj: w_session/*.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a_out_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT w_session/a_out-*.obj -MD -MP -MF w_session/$(DEPDIR)/a_out-*.Tpo -c -o w_session/a_out-*.obj `if test -f 'w_session/*.c'; then $(CYGPATH_W) 'w_session/*.c'; else $(CYGPATH_W) '$(srcdir)/w_session/*.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) w_session/$(DEPDIR)/a_out-*.Tpo w_session/$(DEPDIR)/a_out-*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='w_session/*.c' object='w_session/a_out-*.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a_out_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o w_session/a_out-*.obj `if test -f 'w_session/*.c'; then $(CYGPATH_W) 'w_session/*.c'; else $(CYGPATH_W) '$(srcdir)/w_session/*.c'; fi`
 
 provider/a_out-*.o: provider/*.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a_out_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT provider/a_out-*.o -MD -MP -MF provider/$(DEPDIR)/a_out-*.Tpo -c -o provider/a_out-*.o `test -f 'provider/*.c' || echo '$(srcdir)/'`provider/*.c
@@ -674,6 +699,8 @@ distclean-generic:
 	-rm -f provider/$(am__dirstamp)
 	-rm -f w_chooser/$(DEPDIR)/$(am__dirstamp)
 	-rm -f w_chooser/$(am__dirstamp)
+	-rm -f w_session/$(DEPDIR)/$(am__dirstamp)
+	-rm -f w_session/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -683,7 +710,7 @@ clean: clean-recursive
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-recursive
-	-rm -rf ./$(DEPDIR) provider/$(DEPDIR) w_chooser/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) provider/$(DEPDIR) w_chooser/$(DEPDIR) w_session/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -729,7 +756,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-recursive
-	-rm -rf ./$(DEPDIR) provider/$(DEPDIR) w_chooser/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) provider/$(DEPDIR) w_chooser/$(DEPDIR) w_session/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
