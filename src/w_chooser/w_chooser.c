@@ -17,13 +17,19 @@
 
 #include "w_chooser.h"
 
+#include "../w_session/w_session.h"
+#include "../provider/router.h"
+
 extern GtkApplication *app;
 extern GObject *window;
 extern int w_stage;
 
+static GtkBuilder *builder_local;
+
 void w_chooser_bind(GtkBuilder *builder)
 {
     w_stage = W_CHOOSER;
+    builder_local = builder;
 
     g_signal_connect(gtk_builder_get_object(builder, "c_ls_new_w"), "button_press_event", cb_w_chooser_new, NULL);
     g_signal_connect(gtk_builder_get_object(builder, "c_ls_file_w"), "button_press_event", cb_w_chooser_file, NULL);
@@ -32,13 +38,11 @@ void w_chooser_bind(GtkBuilder *builder)
 
 void cb_w_chooser_new()
 {
-    cb_w_chooser_close();
     printf("TO-DO: NEW\n");
 }
 
 void cb_w_chooser_file()
 {
-    printf("TO-DO: FILE\n");
     GtkWidget *dialog;
     GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
     gint res;
@@ -65,14 +69,15 @@ void cb_w_chooser_file()
     gtk_widget_destroy (dialog);
 
     if (succeeded) {
-        cb_w_chooser_close();
-        printf("FILE SEL: %s\n", filename);
+        cb_w_chooser_finish(router_new_detect(filename));
     }
 }
 
-void cb_w_chooser_close()
+void cb_w_chooser_finish(Router rtr)
 {
-    gtk_widget_destroy(window);
+    //gtk_widget_destroy(window);
+    gtk_widget_hide(window);
+    w_session_bind(builder_local, rtr);
 }
 
 void cb_w_chooser_m_quit()
