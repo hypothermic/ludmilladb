@@ -24,6 +24,8 @@ typedef struct _Router
 {
     Provider *prov;   // set at construction
     const char* path; // database path
+    
+    sqlite3 *sqlite;  // only when prov==SQLITE
 } Router;
 
 Router *router_new_sqlite(const char* path);

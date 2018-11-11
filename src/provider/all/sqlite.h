@@ -19,7 +19,24 @@
 
 #include "../router.h"
 
-void db_sql_init(Router *rtr)
+void *db_sqlite_init(Router *rtr)
 {
-    ;
+    sqlite3 *db;
+
+    sqlite3_open(rtr->path, &db);
+
+    if (db == NULL)
+	{
+		printf("Error while opening db %s\n", rtr->path);
+        return NULL;
+    }
+    else 
+    {
+        return db;
+    }
+}
+
+void db_sqlite_query(Router *rtr)
+{
+
 }

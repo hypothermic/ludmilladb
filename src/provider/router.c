@@ -53,7 +53,7 @@ void router_init(Router *rtr)
     switch (*rtr->prov)
     {
         case SQLITE:
-            db_sql_init(rtr); break;
+            db_sqlite_init(rtr); break;
 
         // more once mysql gets implemented
     }

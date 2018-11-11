@@ -38,7 +38,7 @@ void w_chooser_bind(GtkBuilder *builder)
 
 void cb_w_chooser_new()
 {
-    printf("TO-DO: NEW\n");
+    cb_w_chooser_finish(router_new_detect("/tmp/ldmsession.db"));
 }
 
 void cb_w_chooser_file()
@@ -68,7 +68,8 @@ void cb_w_chooser_file()
 
     gtk_widget_destroy (dialog);
 
-    if (succeeded) {
+    if (succeeded)
+    {
         cb_w_chooser_finish(router_new_detect(filename));
     }
 }
