@@ -106,8 +106,8 @@ am_a_out_OBJECTS = a_out-*.$(OBJEXT) w_chooser/a_out-*.$(OBJEXT) \
 	w_session/a_out-*.$(OBJEXT) provider/a_out-*.$(OBJEXT)
 a_out_OBJECTS = $(am_a_out_OBJECTS)
 am__DEPENDENCIES_1 =
-a_out_DEPENDENCIES = $(am__DEPENDENCIES_1) deployer/libdeployer.a \
-	../include/str_builder/libstrbuilder.a
+a_out_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	deployer/libdeployer.a ../include/str_builder/libstrbuilder.a
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -256,6 +256,8 @@ PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 RANLIB = @RANLIB@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
+SQLITE_CFLAGS = @SQLITE_CFLAGS@
+SQLITE_LIBS = @SQLITE_LIBS@
 STRIP = @STRIP@
 VERSION = @VERSION@
 abs_builddir = @abs_builddir@
@@ -318,8 +320,8 @@ a_out_SOURCES = *.c \
 			  w_session/*.c \
 			  provider/*.c
 
-a_out_CPPFLAGS = $(GTK_CFLAGS)
-a_out_LDADD = $(GTK_LIBS) deployer/libdeployer.a ../include/str_builder/libstrbuilder.a
+a_out_CPPFLAGS = $(GTK_CFLAGS) $(SQLITE_CFLAGS)
+a_out_LDADD = $(GTK_LIBS) $(SQLITE_LIBS) deployer/libdeployer.a ../include/str_builder/libstrbuilder.a
 SUBDIRS = deployer
 all: all-recursive
 

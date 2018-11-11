@@ -4,8 +4,8 @@ a_out_SOURCES=*.c \
               w_chooser/*.c \
 			  w_session/*.c \
 			  provider/*.c
-a_out_CPPFLAGS=$(GTK_CFLAGS)
-a_out_LDADD= $(GTK_LIBS) deployer/libdeployer.a ../include/str_builder/libstrbuilder.a
+a_out_CPPFLAGS=$(GTK_CFLAGS) $(SQLITE_CFLAGS)
+a_out_LDADD= $(GTK_LIBS) $(SQLITE_LIBS) deployer/libdeployer.a ../include/str_builder/libstrbuilder.a
 SUBDIRS = deployer
 
 a.out$(EXEEXT): linkbins $(a_out_OBJECTS) $(a_out_DEPENDENCIES) $(EXTRA_a_out_DEPENDENCIES) 
