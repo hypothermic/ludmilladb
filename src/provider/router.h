@@ -17,15 +17,18 @@
 #define ROUTER_H_
 
 #include <stdlib.h>
+#include <stdint.h>
 
 #include "provider.h"
+//#include "all/sqlite.h"
 
 typedef struct _Router
 {
     Provider *prov;   // set at construction
     const char* path; // database path
     
-    sqlite3 *sqlite;  // only when prov==SQLITE
+    //sqlite3 *sqlite;  // only when prov==SQLITE
+    intptr_t *sqlite;  // only when prov==SQLITE
 } Router;
 
 Router *router_new_sqlite(const char* path);
