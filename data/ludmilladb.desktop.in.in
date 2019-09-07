@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=10.70.003
+_Name=LudmillaDB
+_GenericName=Professional Video Editing for GNU/Linux
+_Comment=A lightweight video editor with many options.
+Exec=ludmilladb
+Icon=ludmilladb
+Terminal=false
+Categories=Graphics
+StartupNotify=true
+ 

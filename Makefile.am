@@ -1,10 +1,17 @@
-clean-generic:
-	rm -f ./build/*.o
+# Makefile.am
 
-maintainer-clean-generic:
-	rm -rf ~/.ludmilladb/res/*
+SUBDIRS = \
+	data \
+	src \
+	vapi \
+	po
 
-execute:
-	src/a.out
+EXTRA_DIST = \
+	intltool-extract.in \
+	intltool-merge.in \
+	intltool-update.in
 
-SUBDIRS = include/str_builder src
+DISTCLEANFILES = \
+	intltool-extract \
+	intltool-merge \
+	intltool-update

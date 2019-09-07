@@ -1,11 +1,41 @@
+# Ignore build directories
 /build/*
 !/build/.xproject
 
-# Ignore temporary files used by Glade
-/res/window.ui~
-/res/timeline_body.ui~
+# Ignore code editor preferences
+*settings.json
+*settings.xml
 
-/build/a.out
-/build/window.css.o
-/build/window.ui.o
-/.vscode/settings.json
+# Temporary build files
+*.stamp-t
+*.out
+*.o
+*file.in
+
+# Glade swap files
+*~
+
+*.swp
+*.pot
+aclocal.m4
+autom4te.cache/
+config.h
+config.h.in
+config.log
+config.status
+configure
+depcomp
+install-sh
+intltool-extract.in
+intltool-merge.in
+intltool-update.in
+missing
+mkinstalldirs
+po/.intltool-merge-cache
+po/POTFILES
+*.gmo
+po/stamp-it
+*.stamp
+stamp-h1
+Makefile
+Makefile.in

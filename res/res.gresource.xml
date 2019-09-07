@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <gresource prefix="/nl/hypothermic/ludmilladb">
+        <file compressed="true" preprocess="xml-stripblanks">res/window.ui</file>
+    </gresource>
+    <gresource prefix="/nl/hypothermic/ludmilladb">
+        <file compressed="true">res/window.css</file>
+    </gresource>
+</gresources>

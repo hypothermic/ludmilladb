@@ -1,0 +1,3 @@
+# gitignore should take care of ignoring most autotools crap, but maintainer-clean doesn't harm:
+
+./autogen.sh && autoreconf && ./configure && make && src/ludmilladb && make maintainer-clean

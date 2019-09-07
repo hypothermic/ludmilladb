@@ -1,21 +1,22 @@
-bin_PROGRAMS=a.out
+bin_PROGRAMS = ludmilladb
 
-a_out_SOURCES=*.c \
-              w_chooser/*.c \
-			  w_session/*.c \
-			  provider/*.c
-a_out_CPPFLAGS=$(GTK_CFLAGS) $(SQLITE_CFLAGS)
-a_out_LDADD= $(GTK_LIBS) $(SQLITE_LIBS) deployer/libdeployer.a ../include/str_builder/libstrbuilder.a
-SUBDIRS = deployer
+ludmilladb_SOURCES = \
+	ludmilladb.vala \
+	frontend.vala \
+	../build/res.gresource.c
 
-a.out$(EXEEXT): linkbins $(a_out_OBJECTS) $(a_out_DEPENDENCIES) $(EXTRA_a_out_DEPENDENCIES) 
-	@rm -f a.out$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(a_out_OBJECTS) $(a_out_LDADD) ../build/*.o $(LIBS)
+INCLUDES = \
+	-include config.h \
+	$(LUDMILLADB_CFLAGS) \
+	-DLOCALEDIR=\""$(localedir)"\" \
+	-DPKGDATADIR=\""$(pkgdatadir)"\" \
+	-DPKGLIBDIR=\""$(pkglibdir)"\"
 
-linkbins:
-	rm -f ../build/*
-	mkdir -p ../build
-	ld -r -b binary ../res/window.ui -o ../build/window.ui.o
-	ld -r -b binary ../res/window.css -o ../build/window.css.o
-	ld -r -b binary ../res/ico/baseline-add-24px.svg -o ../build/add.svg.o
-	ld -r -b binary ../res/ico/baseline-insert_drive_file-24px.svg -o ../build/file.svg.o
+VALAFLAGS = \
+	--vapidir=$(srcdir)/../vapi --pkg config \
+	--gresources=../res/res.gresource.xml ../build/res.gresource.c \
+	--gresourcesdir=.. \
+	@LUDMILLADB_PACKAGES@
+
+ludmilladb_LDADD = \
+	$(LUDMILLADB_LIBS)
