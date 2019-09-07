@@ -5,12 +5,16 @@
 # Ignore code editor preferences
 *settings.json
 *settings.xml
+ludb.db
 
 # Temporary build files
 *.stamp-t
 *.out
 *.o
 *file.in
+
+# Useless files created by autotools
+COPYING
 
 # Glade swap files
 *~
