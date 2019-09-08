@@ -1,4 +1,7 @@
+using GLib;
 using LuDB;
+
+using Gtk;
 
 public static int main(string[] args) {
 	Intl.bindtextdomain(Config.GETTEXT_PACKAGE, Config.LOCALEDIR);

@@ -1,3 +1,5 @@
+using GLib;
+
 using Gtk;
 
 [GtkTemplate (ui = "/nl/hypothermic/ludmilladb/res/window.ui")]

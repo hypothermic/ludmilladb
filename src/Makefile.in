@@ -100,10 +100,10 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_ludmilladb_OBJECTS = ludmilladb.$(OBJEXT) frontend.$(OBJEXT) \
-	res.gresource.$(OBJEXT)
+	session.$(OBJEXT) res.gresource.$(OBJEXT)
 ludmilladb_OBJECTS = $(am_ludmilladb_OBJECTS)
 am__DEPENDENCIES_1 =
-ludmilladb_DEPENDENCIES = $(am__DEPENDENCIES_1)
+ludmilladb_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -169,7 +169,7 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(srcdir)/ludmilladb_vala.stamp $(top_srcdir)/depcomp \
-	frontend.c ludmilladb.c
+	frontend.c ludmilladb.c session.c
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -195,6 +195,9 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+GDA_CFLAGS = @GDA_CFLAGS@
+GDA_LIBS = @GDA_LIBS@
+GDA_PACKAGES = @GDA_PACKAGES@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
@@ -300,11 +303,13 @@ top_srcdir = @top_srcdir@
 ludmilladb_SOURCES = \
 	ludmilladb.vala \
 	frontend.vala \
+	session.vala \
 	../build/res.gresource.c
 
 INCLUDES = \
 	-include config.h \
 	$(LUDMILLADB_CFLAGS) \
+	$(GDA_CFLAGS) \
 	-DLOCALEDIR=\""$(localedir)"\" \
 	-DPKGDATADIR=\""$(pkgdatadir)"\" \
 	-DPKGLIBDIR=\""$(pkglibdir)"\"
@@ -313,10 +318,12 @@ VALAFLAGS = \
 	--vapidir=$(srcdir)/../vapi --pkg config \
 	--gresources=../res/res.gresource.xml ../build/res.gresource.c \
 	--gresourcesdir=.. \
-	@LUDMILLADB_PACKAGES@
+	@LUDMILLADB_PACKAGES@ \
+	@GDA_PACKAGES@
 
 ludmilladb_LDADD = \
-	$(LUDMILLADB_LIBS)
+	$(LUDMILLADB_LIBS) \
+	$(GDA_LIBS)
 
 all: all-am
 
@@ -407,6 +414,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/frontend.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ludmilladb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/res.gresource.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/session.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -445,9 +453,14 @@ $(srcdir)/frontend.c: $(srcdir)/ludmilladb_vala.stamp
 	@if test -f $@; then :; else \
 	  $(MAKE) $(AM_MAKEFLAGS) $(srcdir)/ludmilladb_vala.stamp; \
 	fi
-$(srcdir)/ludmilladb_vala.stamp: ludmilladb.vala frontend.vala
+$(srcdir)/session.c: $(srcdir)/ludmilladb_vala.stamp
+	@if test -f $@; then :; else rm -f $(srcdir)/ludmilladb_vala.stamp; fi
+	@if test -f $@; then :; else \
+	  $(MAKE) $(AM_MAKEFLAGS) $(srcdir)/ludmilladb_vala.stamp; \
+	fi
+$(srcdir)/ludmilladb_vala.stamp: ludmilladb.vala frontend.vala session.vala
 	$(AM_V_at)rm -f $@ && echo stamp > $@-t
-	$(AM_V_VALAC)$(am__cd) $(srcdir) && $(VALAC) $(AM_VALAFLAGS) $(VALAFLAGS) -C ludmilladb.vala frontend.vala
+	$(AM_V_VALAC)$(am__cd) $(srcdir) && $(VALAC) $(AM_VALAFLAGS) $(VALAFLAGS) -C ludmilladb.vala frontend.vala session.vala
 	$(AM_V_at)mv -f $@-t $@
 
 ID: $(am__tagged_files)
@@ -572,8 +585,10 @@ maintainer-clean-generic:
 	-rm -f $(srcdir)/frontend.c
 	-rm -f $(srcdir)/ludmilladb.c
 	-rm -f $(srcdir)/ludmilladb_vala.stamp
+	-rm -f $(srcdir)/session.c
 	-rm -f frontend.c
 	-rm -f ludmilladb.c
+	-rm -f session.c
 clean: clean-am
 
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
