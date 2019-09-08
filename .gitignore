@@ -1,6 +1,7 @@
 # Ignore build directories
 /build/*
 !/build/.xproject
+/src/ludmilladb
 
 # Ignore code editor preferences
 *settings.json
@@ -12,6 +13,8 @@ ludb.db
 *.out
 *.o
 *file.in
+*.in.in
+*top.in
 
 # Useless files created by autotools
 COPYING
@@ -21,6 +24,7 @@ COPYING
 
 *.swp
 *.pot
+*.Po
 aclocal.m4
 autom4te.cache/
 config.h
