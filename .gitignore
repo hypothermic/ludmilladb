@@ -6,7 +6,7 @@
 # Ignore code editor preferences
 *settings.json
 *settings.xml
-ludb.db
+*.db
 
 # Temporary build files
 *.stamp-t

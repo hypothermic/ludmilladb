@@ -11,6 +11,10 @@ public static int main(string[] args) {
 	Environment.set_application_name("LudmillaDB");
 	Environment.set_prgname("LudmillaDB");
 
+	if (!Thread.supported()) {
+        stderr.printf("Multithreading not supported, the application performance might decrease.\n");
+    }
+
 	Gtk.init(ref args);
 
 	LuDB.Window frontend = new LuDB.Window();

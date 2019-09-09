@@ -11,16 +11,27 @@ public class LuDB.Window : Gtk.Window {
 	private List<Session> sessions = new List<Session>();
 
 	construct {
-		sessions.append(new LuDB.GBackend.Session());
-
-		foreach (Session session in sessions) {
-			session.initialize(".", "ludbx.db");
-		}
+		session_add(LuDB.Backends.Sqlite3Backend.instance(), new LuDB.GBackend.Session(), ".", "ludbx.db");
 	}
 
 	[GtkCallback]
     private void window_destroyed() {
-		print("The window got destroyed!\n");
 		Gtk.main_quit();
-    }
+	}
+	
+	public void session_add(Backend backend, Session session, string directory, string filename) {
+		Gtk.ListStore store = list_treeview.model as Gtk.ListStore;
+
+		Gtk.TreeIter iter;
+		store.append(out iter);
+		store.set(iter, 0, backend.identifier() + " at " + directory + "/" + filename);
+
+		session.initialize.begin(backend, directory, filename, (obj, res) => {
+			session.initialize.end(res);
+			// TODO add child node for each table in gtktreestore
+		});
+
+		//session.initialize(directory, filename);
+		sessions.append(session);
+	}
 }

@@ -7,17 +7,22 @@ public class LuDB.GBackend.Session : LuDB.Session, Object {
     private Gda.Connection connection;
     private Backend backend;
 
-    private DataModel tables;
+    private DataModel tables {get; set;}
 
-    public void initialize(string directory, string filename) {
+    public async void initialize(Backend backend, string directory, string filename) {
         GLib.FileUtils.unlink(filename);
+
+        this.backend = backend;
+
         // TODO support other dbs
-        backend    = LuDB.Backends.Sqlite3Backend.instance();
-        connection = Gda.Connection.open_from_string("SQLite", "DB_DIR=" + directory + ";DB_NAME=" + filename,
+        connection = Gda.Connection.open_from_string(backend.identifier(), "DB_DIR=" + directory + ";DB_NAME=" + filename,
                                                             null, Gda.ConnectionOptions.THREAD_ISOLATED);
 
-        tables = this.connection.execute_select_command(backend.list_tables());
-        stdout.printf("TABLES: " + tables.dump_as_string() + "\n");
+        update_tables();
+    }
+
+    public async void update_tables() {
+        tables = connection.execute_select_command(backend.list_tables());
     }
 
     public bool is_ready() {

@@ -13,6 +13,10 @@ public class LuDB.Backends.Sqlite3Backend : LuDB.Backend, Object {
 
     }
 
+    public string identifier() {
+        return "SQLite";
+    }
+
     public string list_tables() {
         return "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;";
     }
