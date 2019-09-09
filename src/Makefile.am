@@ -3,7 +3,10 @@ bin_PROGRAMS = ludmilladb
 ludmilladb_SOURCES = \
 	ludmilladb.vala \
 	frontend.vala \
+	backend.vala \
+	backend_sqlite.vala \
 	session.vala \
+	session_gda.vala \
 	../build/res.gresource.c
 
 INCLUDES = \

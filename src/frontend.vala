@@ -8,8 +8,14 @@ public class LuDB.Window : Gtk.Window {
 	[GtkChild]
 	private TreeView list_treeview;
 
-	construct {
+	private List<Session> sessions = new List<Session>();
 
+	construct {
+		sessions.append(new LuDB.GBackend.Session());
+
+		foreach (Session session in sessions) {
+			session.initialize(".", "ludbx.db");
+		}
 	}
 
 	[GtkCallback]
