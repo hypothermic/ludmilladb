@@ -19,7 +19,7 @@ IT_PROG_INTLTOOL([0.35])
 
 pkg_modules="gtk+-3.0 >= 3.2.0"
 #LUDMILLADB_PACKAGES="--pkg gtk+-3.0 --pkg libgda-5.0 --pkg libxml-2.0"
-LUDMILLADB_PACKAGES="--pkg gtk+-3.0 --pkg libgda-5.0"
+LUDMILLADB_PACKAGES="--pkg gtk+-3.0 --pkg libgda-5.0 --pkg gee-0.8"
 PKG_CHECK_MODULES(LUDMILLADB, [$pkg_modules])
 AC_SUBST(LUDMILLADB_CFLAGS)
 AC_SUBST(LUDMILLADB_LIBS)

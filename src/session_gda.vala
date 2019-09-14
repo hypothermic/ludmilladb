@@ -1,4 +1,5 @@
 using GLib;
+using Gee;
 
 using Gda;
 
@@ -27,5 +28,14 @@ public class LuDB.GBackend.Session : LuDB.Session, Object {
 
     public bool is_ready() {
         return true; // FIXME
+    }
+
+    public DataModel get_tables() {
+        return tables;
+    }
+
+    public Gee.List<Gtk.MenuItem> prepare_menu_items(Gtk.TreePath path, Gtk.TreeViewColumn column) {
+        var list = new Gee.ArrayList<Gtk.MenuItem>();
+        return list;
     }
 }
